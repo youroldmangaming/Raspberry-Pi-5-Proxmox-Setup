@@ -1,0 +1,38 @@
+Setup RPi5 with Proxmox.
+Can not run on metal so initially RaspOS 64Bit Minimal, but a SD and plug in an ethernet cable. Then Power Up.
+Look on your router to see the IP allocated then ssh in.
+
+once in.
+
+sudo apt update sudo apt upgrade
+
+sudo apt install curl
+
+sudo nano /etc/hosts
+find your static IP on your router eth0
+
+edit
+127.0.0.1 raspberrypi
+192.168.178.38 raspberrypi
+---
+
+hostname --ip-address
+
+192.168.178.38
+
+sudo passwd root
+`New password: Retype new password:`
+
+curl -L https://mirrors.apqa.cn/proxmox/debian/pveport.gpg | sudo tee /usr/share/keyrings/pveport.gpg >/dev/null
+
+echo "deb [deb=arm64 signed-by=/usr/share/keyrings/pveport.gpg] https://mirrors.apqa.cn/proxmox/debian/pve bookworm port" | sudo tee /etc/apt/sources.list.d/pveport.list
+
+sudo apt update
+
+sudo apt install ifupdown2
+
+sudo apt install proxmox-ve postfix open-iscsi pve-edk2-firmware-aarch64
+
+hostname -I
+
+https://192.168.178.37:8006/
