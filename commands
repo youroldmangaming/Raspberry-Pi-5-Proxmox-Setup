@@ -4,7 +4,9 @@ Look on your router to see the IP allocated then ssh in.
 
 once in.
 
-sudo apt update sudo apt upgrade
+sudo apt update 
+
+sudo apt upgrade
 
 sudo apt install curl
 
